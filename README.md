@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <div align="center">
   <a href="https://github.com/Kanelucky/CommandTreeAP">
-    <img src="CommandTreeAPI.png" alt="Logo" width="200" height="200">
+    <img src="tree.png" alt="Logo" width="200" height="200">
   </a>
 
   <h1>CommandTree</h1>

@@ -1,0 +1,7 @@
+name: CommandTree-Example
+main: org.example.exampleplugin.Main
+version: "0.1.0"
+api: "2.0.0"
+author: Kanelucky
+description: Example plugin from PNX documentation
+website: https://docs.powernukkitx.org/

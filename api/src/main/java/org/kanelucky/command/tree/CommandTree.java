@@ -6,6 +6,9 @@ import cn.nukkit.command.tree.node.CommandNode;
 
 import java.util.List;
 
+/**
+ * @author Kanelucky
+ */
 public interface CommandTree {
 
     CommandResult parse(CommandSender sender, String[] args);

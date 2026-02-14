@@ -2,14 +2,31 @@ package org.kanelucky.command.tree;
 
 import cn.nukkit.command.CommandSender;
 
+import cn.nukkit.utils.TextFormat;
+import org.kanelucky.check.ExecutionCheck;
 import org.kanelucky.command.tree.node.CommandRouteNode;
+import org.kanelucky.command.tree.node.NodeType;
 
+/**
+ * @author Kanelucky
+ */
 public class CommandRouteTree {
 
     private final CommandRouteNode root;
+    private String defaultPermissionMessage = TextFormat.RED + "You do not have permission.";
+    private String invalidSyntaxMessage = TextFormat.RED + "Invalid command syntax.";
+
 
     public CommandRouteTree(String rootName) {
-        this.root = new CommandRouteNode(rootName);
+        this.root = CommandRouteNode.literal(rootName);
+    }
+
+    public void setDefaultPermissionMessage(String message) {
+        this.defaultPermissionMessage = message;
+    }
+
+    public String getDefaultPermissionMessage() {
+        return defaultPermissionMessage;
     }
 
     public CommandRouteNode getRoot() {
@@ -17,43 +34,73 @@ public class CommandRouteTree {
     }
 
     public CommandResult dispatch(CommandSender sender, String[] args) {
+
+        CommandContext context = new CommandContext(sender);
         CommandRouteNode current = root;
-        int consumed = 0;
 
-        for (int i = 0; i < args.length; i++) {
-            String arg = args[i];
+        for (String arg : args) {
 
-            CommandRouteNode next = null;
-            for (CommandRouteNode child : current.getChildren()) {
-                if (child.getName().equalsIgnoreCase(arg)) {
-                    next = child;
-                    break;
-                }
-            }
+            CommandRouteNode next = findNextNode(current, arg, context);
 
             if (next == null) {
-                break;
+                return CommandResult.fail(invalidSyntaxMessage);
             }
 
             current = next;
-            consumed++;
         }
 
-        if (current.isLeaf()) {
+        if (!current.isLeaf()) {
+            return CommandResult.fail(invalidSyntaxMessage);
+        }
 
-            if (!current.canExecute(sender)) {
-                sender.sendMessage("§cYou cannot use this command.");
-                return CommandResult.ERROR;
+        ExecutionCheck check = current.check(sender, defaultPermissionMessage);
+
+        if (!check.isAllowed()) {
+            String message = check.getMessage();
+            if (message != null) {
+                sender.sendMessage(message);
             }
-
-            String[] remainingArgs =
-                    java.util.Arrays.copyOfRange(args, consumed, args.length);
-
-            return current.execute(sender, remainingArgs);
+            return CommandResult.fail(message);
         }
 
-        sender.sendMessage("§cWrong command syntax");
-        return CommandResult.INVALID_SYNTAX;
+        CommandResult result = current.execute(context);
+
+        if (!result.isSuccess() && result.getMessage() != null) {
+            sender.sendMessage(result.getMessage());
+        }
+
+        return result;
     }
+
+
+    private CommandRouteNode findNextNode(
+            CommandRouteNode current,
+            String arg,
+            CommandContext context
+    ) {
+
+        for (CommandRouteNode child : current.getChildren()) {
+            if (child.getType() == NodeType.LITERAL &&
+                    child.getName().equalsIgnoreCase(arg)) {
+                return child;
+            }
+        }
+
+        for (CommandRouteNode child : current.getChildren()) {
+            if (child.getType() == NodeType.ARGUMENT) {
+                try {
+                    Object parsed = child.getArgumentType().parse(context, arg);
+                    context.putArg(child.getName(), parsed);
+                    return child;
+
+                } catch (IllegalArgumentException e) {
+                    return null;
+                }
+            }
+        }
+
+        return null;
+    }
+
 }
 

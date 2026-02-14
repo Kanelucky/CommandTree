@@ -7,6 +7,9 @@ import cn.nukkit.plugin.PluginBase;
 import org.kanelucky.command.tree.CommandTree;
 import org.kanelucky.command.tree.CommandTreeFactory;
 
+/**
+ * @author Kanelucky
+ */
 public class CommandTreeMain extends PluginBase {
 
     private CommandTree commandTree;

@@ -9,6 +9,9 @@ import org.kanelucky.command.tree.node.CommandRouteNode;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Kanelucky
+ */
 public class CommandTreeFactory implements CommandTree.Factory {
 
     @Override

@@ -1,6 +1,6 @@
 plugins {
     id("java")
-    id("com.gradleup.shadow") version "9.3.1"
+    id("java-library")
 }
 
 group = "org.kanelucky"
@@ -10,7 +10,14 @@ repositories {
     mavenCentral()
     maven("https://repo.opencollab.dev/maven-snapshots")
     maven("https://repo.opencollab.dev/maven-releases")
-    maven("https://repo.powernukkitx.org/releases")
+    maven {
+        name = "powerNukkitXReleases"
+        url = uri("https://repo.powernukkitx.org/releases")
+    }
+    maven {
+        name = "powerNukkitXSnapshots"
+        url = uri("https://repo.powernukkitx.org/snapshots")
+    }
 }
 
 dependencies {
@@ -20,30 +27,7 @@ dependencies {
     compileOnly("org.powernukkitx:server:2.0.0-SNAPSHOT")
 }
 
-tasks {
-
-    jar {
-        manifest {
-            attributes(
-                "Main-Class" to "org.kanelucky.server.CommandTreeMain",
-                "Implementation-Title" to "CommandTree-API",
-                "Implementation-Version" to project.version
-            )
-        }
-    }
-
-    shadowJar {
-        mergeServiceFiles()
-        archiveFileName.set(
-            "commandtree-api-${project.version}-shaded.jar"
-        )
-    }
-
-    build {
-        dependsOn(shadowJar)
-    }
-
-    test {
-        useJUnitPlatform()
-    }
+tasks.jar {
+    archiveBaseName.set("CommandTree-API")
+    archiveVersion.set(project.version.toString())
 }

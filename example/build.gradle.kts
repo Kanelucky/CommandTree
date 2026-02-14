@@ -10,12 +10,19 @@ repositories {
     mavenCentral()
     maven("https://repo.opencollab.dev/maven-snapshots")
     maven("https://repo.opencollab.dev/maven-releases")
-    maven("https://repo.powernukkitx.org/releases")
+    maven {
+        name = "powerNukkitXReleases"
+        url = uri("https://repo.powernukkitx.org/releases")
+    }
 }
 
 dependencies {
     compileOnly("org.powernukkitx:server:2.0.0-SNAPSHOT")
     implementation(project(":api"))
+}
+
+tasks.jar {
+    enabled = false
 }
 
 tasks {
@@ -33,7 +40,7 @@ tasks {
     shadowJar {
         mergeServiceFiles()
         archiveFileName.set(
-            "commandtree-example-${project.version}-shaded.jar"
+            "CommandTree-Example-${project.version}.jar"
         )
     }
 

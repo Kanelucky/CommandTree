@@ -2,6 +2,7 @@ package org.kanelucky.argument;
 
 import cn.nukkit.item.Item;
 import cn.nukkit.registry.Registries;
+import cn.nukkit.utils.TextFormat;
 
 import org.kanelucky.command.tree.CommandContext;
 
@@ -16,7 +17,7 @@ public class ItemArgumentType implements ArgumentType<Item> {
         Item item = Registries.ITEM.get(input);
 
         if (item == null) {
-            throw new IllegalArgumentException("Unknown item: " + input);
+            throw new IllegalArgumentException(TextFormat.RED + "Unknown item: " + input);
         }
 
         return item.clone();

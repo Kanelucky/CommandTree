@@ -1,5 +1,7 @@
 package org.kanelucky.argument;
 
+import cn.nukkit.utils.TextFormat;
+
 import org.kanelucky.command.tree.CommandContext;
 
 /**
@@ -23,12 +25,12 @@ public class IntegerArgumentType implements ArgumentType<Integer> {
         try {
             value = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Invalid number: " + input);
+            throw new IllegalArgumentException(TextFormat.RED + "Invalid number: " + input);
         }
 
         if (value < min || value > max) {
             throw new IllegalArgumentException(
-                    "Number must be between " + min + " and " + max
+                    TextFormat.RED + "Number must be between " + min + " and " + max
             );
         }
 

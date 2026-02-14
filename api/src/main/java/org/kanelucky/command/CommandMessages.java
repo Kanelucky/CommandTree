@@ -2,6 +2,9 @@ package org.kanelucky.command;
 
 import cn.nukkit.utils.TextFormat;
 
+/**
+ * @author Kanelucky
+ */
 public class CommandMessages {
 
     private String noPermission = TextFormat.RED + "You do not have permission.";

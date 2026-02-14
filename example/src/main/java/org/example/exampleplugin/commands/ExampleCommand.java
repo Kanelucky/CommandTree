@@ -1,14 +1,10 @@
 package org.example.exampleplugin.commands;
 
-import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 
 import cn.nukkit.command.CommandSender;
-import cn.nukkit.command.simple.Arguments;
-import com.sun.jdi.connect.Connector;
-import org.kanelucky.argument.ArgumentType;
+
 import org.kanelucky.argument.IntegerArgumentType;
-import org.kanelucky.argument.PlayerArgumentType;
 import org.kanelucky.argument.StringArgumentType;
 import org.kanelucky.command.tree.CommandResult;
 import org.kanelucky.command.tree.CommandRouteTree;
@@ -22,28 +18,37 @@ public class ExampleCommand extends Command {
 
     public ExampleCommand() {
 
-        super("examplecommand", "Example Command", "/examplecommand");
-        this.setPermission("examplecommand.run");
+        super("example", "Example Command", "/example");
+        this.setPermission("example.run");
         this.setAliases(new String[]{"ec"});
         this.tree = buildTree();
 
     }
     private CommandRouteTree buildTree() {
 
-        CommandRouteTree tree = new CommandRouteTree("examplecommand");
+        CommandRouteTree tree = new CommandRouteTree("example");
 
         tree.getRoot()
                 .senderType(SenderType.PLAYER)
                 .exec(ctx ->{
-                    ctx.getSender().asPlayer().sendMessage("HAHAHHAHA");
+                    ctx.getSender().asPlayer().sendMessage("CommandTree is working!");
                     return CommandResult.success();
                 })
-                .then(CommandRouteNode.literal("haha")
+                // /example test
+                .then(CommandRouteNode.literal("test")
                         .senderType(SenderType.PLAYER)
                         .exec(ctx -> {
                             ctx.getSender().sendMessage("HAHAH");
                             return CommandResult.success();
-                        }));
+                        }))
+                // /example say <text>
+                .then(CommandRouteNode.literal("say")
+                        .then(CommandRouteNode.argument("text", StringArgumentType.string())
+                                .exec(ctx -> {
+                                    String text = ctx.getArg("text");
+                                    ctx.getSender().sendMessage(text);
+                                    return CommandResult.success();
+                                })));
         return tree;
     }
 

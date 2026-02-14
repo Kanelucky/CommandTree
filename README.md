@@ -11,7 +11,7 @@
 
 > [!IMPORTANT]
 > 
-> This API is under active development. Breaking changes may occur between versions.
+> This project is in 0.x stage and is under active development. Breaking changes may occur at any time.
 
 
 # What is CommandTree?

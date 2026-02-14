@@ -1,6 +1,7 @@
 package org.kanelucky.argument;
 
 import cn.nukkit.Player;
+import cn.nukkit.utils.TextFormat;
 
 import org.kanelucky.command.tree.CommandContext;
 
@@ -17,7 +18,7 @@ public class PlayerArgumentType implements ArgumentType<Player> {
                 .getPlayerExact(input);
 
         if (player == null) {
-            throw new IllegalArgumentException("Player not found: " + input);
+            throw new IllegalArgumentException(TextFormat.RED + "Player not found: " + input);
         }
 
         return player;

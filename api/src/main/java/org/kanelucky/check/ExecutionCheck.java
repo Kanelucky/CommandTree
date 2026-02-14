@@ -1,5 +1,8 @@
 package org.kanelucky.check;
 
+/**
+ * @author Kanelucky
+ */
 public class ExecutionCheck {
 
     private final boolean allowed;

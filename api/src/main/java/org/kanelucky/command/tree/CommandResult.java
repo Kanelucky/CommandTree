@@ -2,6 +2,9 @@ package org.kanelucky.command.tree;
 
 import cn.nukkit.utils.TextFormat;
 
+/**
+ * @author Kanelucky
+ */
 public class CommandResult {
 
     private final boolean success;

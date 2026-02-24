@@ -18,7 +18,24 @@
 
 - CommandTree is a lightweight library that provides a modern command tree API for PowerNukkitX (Minecraft Bedrock server software).
 
-# How to use
+
+## Installation
+
+Add JitPack to your repositories:
+```kotlin
+repositories {
+    maven("https://jitpack.io")
+}
+```
+
+Add the dependency:
+```kotlin
+dependencies {
+    implementation("com.github.Kanelucky:CommandTree:0.1.0")
+}
+```
+
+## How to use
 ```java
 public class ExampleCommand extends Command {
 
@@ -70,3 +87,4 @@ public class ExampleCommand extends Command {
 }
 
 ```
+

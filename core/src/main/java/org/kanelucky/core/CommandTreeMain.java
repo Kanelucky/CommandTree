@@ -1,9 +1,9 @@
-package org.kanelucky;
+package org.kanelucky.core;
 
 import cn.nukkit.plugin.PluginBase;
 
 import cn.nukkit.utils.TextFormat;
-import org.kanelucky.command.tree.CommandTree;
+import org.kanelucky.core.command.tree.CommandTree;
 
 /**
  * @author Kanelucky

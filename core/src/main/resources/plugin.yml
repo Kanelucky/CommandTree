@@ -1,5 +1,5 @@
 name: CommandTree-API
-main: org.kanelucky.CommandTreeMain
+main: org.kanelucky.core.CommandTreeMain
 version: "0.1.0"
 api: "2.0.0"
 author: Kanelucky

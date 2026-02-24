@@ -1,4 +1,4 @@
-package org.kanelucky.command;
+package org.kanelucky.core.command;
 
 import cn.nukkit.utils.TextFormat;
 

@@ -1,6 +1,9 @@
-package org.kanelucky.argument;
+package org.kanelucky.core.argument;
 
-import org.kanelucky.command.tree.CommandContext;
+import org.kanelucky.core.command.tree.CommandContext;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author Kanelucky

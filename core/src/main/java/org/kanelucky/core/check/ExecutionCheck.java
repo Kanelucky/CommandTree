@@ -1,4 +1,4 @@
-package org.kanelucky.check;
+package org.kanelucky.core.check;
 
 /**
  * @author Kanelucky

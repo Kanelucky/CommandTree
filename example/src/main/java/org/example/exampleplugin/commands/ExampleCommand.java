@@ -4,13 +4,11 @@ import cn.nukkit.command.Command;
 
 import cn.nukkit.command.CommandSender;
 
-import org.kanelucky.argument.IntegerArgumentType;
-import org.kanelucky.argument.StringArgumentType;
-import org.kanelucky.command.tree.CommandResult;
-import org.kanelucky.command.tree.CommandRouteTree;
-import org.kanelucky.command.tree.SenderType;
-import org.kanelucky.command.tree.node.CommandRouteNode;
-
+import org.kanelucky.core.argument.StringArgumentType;
+import org.kanelucky.core.command.tree.CommandResult;
+import org.kanelucky.core.command.tree.CommandRouteTree;
+import org.kanelucky.core.command.tree.SenderType;
+import org.kanelucky.core.command.tree.node.CommandRouteNode;
 
 public class ExampleCommand extends Command {
 
@@ -19,7 +17,6 @@ public class ExampleCommand extends Command {
     public ExampleCommand() {
 
         super("example", "Example Command", "/example");
-        this.setPermission("example.run");
         this.setAliases(new String[]{"ec"});
         this.tree = buildTree();
 
@@ -29,6 +26,7 @@ public class ExampleCommand extends Command {
         CommandRouteTree tree = new CommandRouteTree("example");
 
         tree.getRoot()
+                .permission("example.run", "LOL")
                 .senderType(SenderType.PLAYER)
                 .exec(ctx ->{
                     ctx.getSender().asPlayer().sendMessage("CommandTree is working!");
@@ -43,6 +41,7 @@ public class ExampleCommand extends Command {
                         }))
                 // /example say <text>
                 .then(CommandRouteNode.literal("say")
+                        .permission("example.say", "LOL")
                         .then(CommandRouteNode.argument("text", StringArgumentType.string())
                                 .exec(ctx -> {
                                     String text = ctx.getArg("text");

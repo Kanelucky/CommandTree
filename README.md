@@ -27,36 +27,45 @@ public class ExampleCommand extends Command {
     public ExampleCommand() {
 
         super("example", "Example Command", "/example");
-        this.setPermission("example.run");
         this.setAliases(new String[]{"ec"});
         this.tree = buildTree();
 
     }
     private CommandRouteTree buildTree() {
+
         CommandRouteTree tree = new CommandRouteTree("example");
+
         tree.getRoot()
-                .senderType(SenderType.ANY)
-                .exec((sender, args) -> {
-                    sender.sendMessage("This is root");
-                    return CommandResult.SUCCESS;
+                .permission("example.run", "LOL")
+                .senderType(SenderType.PLAYER)
+                .exec(ctx ->{
+                    ctx.getSender().asPlayer().sendMessage("CommandTree is working!");
+                    return CommandResult.success();
                 })
-                .then(new CommandRouteNode("subcommand")
-                        .permission("example.subcommand.run")
+                // /example test
+                .then(CommandRouteNode.literal("test")
                         .senderType(SenderType.PLAYER)
-                        .exec((sender, args) -> {
-                            sender.sendMessage("This is subcommand");
-                            return CommandResult.SUCCESS;
-                        })
-                );
-
+                        .exec(ctx -> {
+                            ctx.getSender().sendMessage("HAHAH");
+                            return CommandResult.success();
+                        }))
+                // /example say <text>
+                .then(CommandRouteNode.literal("say")
+                        .permission("example.say", "LOL")
+                        .then(CommandRouteNode.argument("text", StringArgumentType.string())
+                                .exec(ctx -> {
+                                    String text = ctx.getArg("text");
+                                    ctx.getSender().sendMessage(text);
+                                    return CommandResult.success();
+                                })));
         return tree;
-
     }
+
 
     @Override
     public boolean execute(CommandSender sender, String label, String[] args) {
         CommandResult result = tree.dispatch(sender, args);
-        return result == CommandResult.SUCCESS;
+        return result == CommandResult.success();
     }
 }
 

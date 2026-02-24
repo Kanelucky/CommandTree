@@ -1,5 +1,5 @@
 rootProject.name = "CommandTreeAPI"
 include(
-    "api",
+    "core",
     "example"
 )

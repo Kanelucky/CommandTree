@@ -18,7 +18,7 @@ repositories {
 
 dependencies {
     compileOnly("org.powernukkitx:server:2.0.0-SNAPSHOT")
-    implementation(project(":api"))
+    implementation(project(":core"))
 }
 
 tasks.jar {

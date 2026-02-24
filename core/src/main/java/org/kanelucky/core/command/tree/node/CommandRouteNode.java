@@ -1,16 +1,16 @@
-package org.kanelucky.command.tree.node;
+package org.kanelucky.core.command.tree.node;
 
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.tree.node.CommandNode;
 import cn.nukkit.utils.TextFormat;
 
-import org.kanelucky.argument.ArgumentType;
-import org.kanelucky.check.ExecutionCheck;
-import org.kanelucky.command.CommandMessages;
-import org.kanelucky.command.tree.CommandContext;
-import org.kanelucky.command.tree.CommandResult;
-import org.kanelucky.command.tree.SenderType;
+import org.kanelucky.core.argument.ArgumentType;
+import org.kanelucky.core.check.ExecutionCheck;
+import org.kanelucky.core.command.CommandMessages;
+import org.kanelucky.core.command.tree.CommandContext;
+import org.kanelucky.core.command.tree.CommandResult;
+import org.kanelucky.core.command.tree.SenderType;
 
 import java.util.ArrayList;
 import java.util.List;

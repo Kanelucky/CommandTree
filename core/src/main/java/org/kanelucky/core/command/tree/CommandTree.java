@@ -1,4 +1,4 @@
-package org.kanelucky.command.tree;
+package org.kanelucky.core.command.tree;
 
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;

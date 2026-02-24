@@ -1,10 +1,10 @@
-package org.kanelucky.command.tree;
+package org.kanelucky.core.command.tree;
 
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.tree.node.CommandNode;
 
-import org.kanelucky.command.tree.node.CommandRouteNode;
+import org.kanelucky.core.command.tree.node.CommandRouteNode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,16 +17,12 @@ public class CommandTreeFactory implements CommandTree.Factory {
     @Override
     public CommandTree create(Command command) {
 
-        CommandRouteTree routeTree =
-                new CommandRouteTree(command.getName());
+        CommandRouteTree routeTree = new CommandRouteTree(command.getName());
 
         return new CommandTree() {
 
             @Override
-            public CommandResult parse(
-                    CommandSender sender,
-                    String[] args
-            ) {
+            public CommandResult parse(CommandSender sender, String[] args) {
                 return routeTree.dispatch(sender, args);
             }
 
@@ -42,11 +38,7 @@ public class CommandTreeFactory implements CommandTree.Factory {
                 return leaves;
             }
 
-
-            private void collectLeaves(
-                    CommandRouteNode node,
-                    List<CommandNode> out
-            ) {
+            private void collectLeaves(CommandRouteNode node, List<CommandNode> out) {
                 if (node.isLeaf()) {
                     out.add(node);
                 }

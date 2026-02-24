@@ -1,6 +1,6 @@
-package org.kanelucky.command.tree;
+package org.kanelucky.core.command.tree;
 
-import cn.nukkit.utils.TextFormat;
+import org.kanelucky.core.command.CommandMessages;
 
 /**
  * @author Kanelucky
@@ -9,7 +9,6 @@ public class CommandResult {
 
     private final boolean success;
     private final String message;
-    private static final String DEFAULT_FAIL_MESSAGE = TextFormat.RED + "Command failed.";
 
     private CommandResult(boolean success, String message) {
         this.success = success;
@@ -21,7 +20,8 @@ public class CommandResult {
     }
 
     public static CommandResult fail() {
-        return new CommandResult(false, DEFAULT_FAIL_MESSAGE);
+        CommandMessages messages = new CommandMessages();
+        return new CommandResult(false, messages.defaultFail());
     }
 
     public static CommandResult fail(String message) {

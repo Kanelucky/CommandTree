@@ -1,4 +1,4 @@
-package org.kanelucky.command.tree.node;
+package org.kanelucky.core.command.tree.node;
 
 /**
  * @author Kanelucky

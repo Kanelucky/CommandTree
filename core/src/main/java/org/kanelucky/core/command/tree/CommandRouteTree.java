@@ -1,11 +1,11 @@
-package org.kanelucky.command.tree;
+package org.kanelucky.core.command.tree;
 
 import cn.nukkit.command.CommandSender;
 
-import cn.nukkit.utils.TextFormat;
-import org.kanelucky.check.ExecutionCheck;
-import org.kanelucky.command.tree.node.CommandRouteNode;
-import org.kanelucky.command.tree.node.NodeType;
+import org.kanelucky.core.check.ExecutionCheck;
+import org.kanelucky.core.command.CommandMessages;
+import org.kanelucky.core.command.tree.node.CommandRouteNode;
+import org.kanelucky.core.command.tree.node.NodeType;
 
 /**
  * @author Kanelucky
@@ -13,9 +13,10 @@ import org.kanelucky.command.tree.node.NodeType;
 public class CommandRouteTree {
 
     private final CommandRouteNode root;
-    private String defaultPermissionMessage = TextFormat.RED + "You do not have permission.";
-    private String invalidSyntaxMessage = TextFormat.RED + "Invalid command syntax.";
+    private final CommandMessages messages = new CommandMessages();
 
+    private String defaultPermissionMessage = messages.noPermission();
+    private String invalidSyntaxMessage = messages.invalidSyntax();
 
     public CommandRouteTree(String rootName) {
         this.root = CommandRouteNode.literal(rootName);
@@ -72,7 +73,6 @@ public class CommandRouteTree {
         return result;
     }
 
-
     private CommandRouteNode findNextNode(
             CommandRouteNode current,
             String arg,
@@ -92,7 +92,6 @@ public class CommandRouteTree {
                     Object parsed = child.getArgumentType().parse(context, arg);
                     context.putArg(child.getName(), parsed);
                     return child;
-
                 } catch (IllegalArgumentException e) {
                     return null;
                 }
@@ -101,6 +100,4 @@ public class CommandRouteTree {
 
         return null;
     }
-
 }
-

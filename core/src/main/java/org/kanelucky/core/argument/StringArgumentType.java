@@ -1,6 +1,6 @@
-package org.kanelucky.argument;
+package org.kanelucky.core.argument;
 
-import org.kanelucky.command.tree.CommandContext;
+import org.kanelucky.core.command.tree.CommandContext;
 
 /**
  * @author Kanelucky

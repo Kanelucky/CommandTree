@@ -1,10 +1,11 @@
 plugins {
     id("java")
     id("java-library")
+    id("maven-publish")
 }
 
 group = "org.kanelucky"
-version = "0.1.0"
+version = "0.1.1"
 
 repositories {
     mavenCentral()
@@ -30,4 +31,13 @@ dependencies {
 tasks.jar {
     archiveBaseName.set("CommandTree-API")
     archiveVersion.set(project.version.toString())
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+            artifactId = "CommandTree-API"
+        }
+    }
 }

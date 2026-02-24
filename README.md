@@ -31,7 +31,7 @@ repositories {
 Add the dependency:
 ```kotlin
 dependencies {
-    implementation("com.github.Kanelucky:CommandTree:0.1.0")
+    implementation("com.github.Kanelucky:CommandTree:0.1.1")
 }
 ```
 

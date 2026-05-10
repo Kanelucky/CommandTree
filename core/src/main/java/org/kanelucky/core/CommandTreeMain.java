@@ -14,9 +14,7 @@ public class CommandTreeMain extends PluginBase {
 
     @Override
     public void onEnable() {
-        this.getLogger().info(
-                TextFormat.GREEN + "CommandTree-API " +
-                        TextFormat.BLUE + "(https://github.com/Kanelucky/CommandTree) " +
-                        TextFormat.GREEN + "enabled successfully!");
+        this.getLogger()
+            .info(TextFormat.GREEN + "CommandTree-API " + TextFormat.BLUE + "(https://github.com/Kanelucky/CommandTree) " + TextFormat.GREEN + "enabled successfully!");
     }
 }

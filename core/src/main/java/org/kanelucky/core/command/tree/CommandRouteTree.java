@@ -77,11 +77,12 @@ public class CommandRouteTree {
             CommandRouteNode current,
             String arg,
             CommandContext context
-    ) {
+                                         ) {
 
         for (CommandRouteNode child : current.getChildren()) {
-            if (child.getType() == NodeType.LITERAL &&
-                    child.getName().equalsIgnoreCase(arg)) {
+            if (child.getType() == NodeType.LITERAL && child.getName()
+                                                            .equalsIgnoreCase(
+                                                                    arg)) {
                 return child;
             }
         }
@@ -89,7 +90,8 @@ public class CommandRouteTree {
         for (CommandRouteNode child : current.getChildren()) {
             if (child.getType() == NodeType.ARGUMENT) {
                 try {
-                    Object parsed = child.getArgumentType().parse(context, arg);
+                    Object parsed = child.getArgumentType()
+                                         .parse(context, arg);
                     context.putArg(child.getName(), parsed);
                     return child;
                 } catch (IllegalArgumentException e) {

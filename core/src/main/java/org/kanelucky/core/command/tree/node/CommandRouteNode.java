@@ -59,7 +59,10 @@ public class CommandRouteNode extends CommandNode {
         return new CommandRouteNode(name, NodeType.LITERAL);
     }
 
-    public static <T> CommandRouteNode argument(String name, ArgumentType<T> type) {
+    public static <T> CommandRouteNode argument(
+            String name,
+            ArgumentType<T> type
+                                               ) {
         CommandRouteNode node = new CommandRouteNode(name, NodeType.ARGUMENT);
         node.argumentType = type;
         return node;
@@ -105,7 +108,10 @@ public class CommandRouteNode extends CommandNode {
         return this;
     }
 
-    public ExecutionCheck check(CommandSender sender, String defaultPermissionMessage) {
+    public ExecutionCheck check(
+            CommandSender sender,
+            String defaultPermissionMessage
+                               ) {
 
         CommandRouteNode current = this;
 
@@ -117,9 +123,7 @@ public class CommandRouteNode extends CommandNode {
 
             if (current.permission != null && !sender.hasPermission(current.permission)) {
 
-                String message = current.permissionMessage != null
-                        ? current.permissionMessage
-                        : defaultPermissionMessage;
+                String message = current.permissionMessage != null ? current.permissionMessage : defaultPermissionMessage;
 
                 return ExecutionCheck.fail(message);
             }

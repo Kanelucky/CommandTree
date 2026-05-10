@@ -27,7 +27,8 @@ public class ArgumentNode<T> implements IParamNode<T> {
 
     @Override
     public void fill(String arg) {
-        CommandContext context = new CommandContext(paramList.getParamTree().getSender());
+        CommandContext context = new CommandContext(paramList.getParamTree()
+                                                             .getSender());
         try {
             this.result = argumentType.parse(context, arg);
             this.hasResult = true;
@@ -63,8 +64,14 @@ public class ArgumentNode<T> implements IParamNode<T> {
     }
 
     @Override
-    public IParamNode<T> init(ParamList parent, String name, boolean optional,
-                              CommandParamType type, CommandEnum enumData, String postFix) {
+    public IParamNode<T> init(
+            ParamList parent,
+            String name,
+            boolean optional,
+            CommandParamType type,
+            CommandEnum enumData,
+            String postFix
+                             ) {
         this.paramList = parent;
         this.optional = optional;
         return this;

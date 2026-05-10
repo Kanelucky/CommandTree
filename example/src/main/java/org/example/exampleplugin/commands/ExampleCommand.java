@@ -1,7 +1,6 @@
 package org.example.exampleplugin.commands;
 
 import cn.nukkit.command.Command;
-
 import cn.nukkit.command.CommandSender;
 
 import org.kanelucky.core.argument.StringArgumentType;
@@ -21,33 +20,40 @@ public class ExampleCommand extends Command {
         this.tree = buildTree();
 
     }
+
     private CommandRouteTree buildTree() {
 
         CommandRouteTree tree = new CommandRouteTree("example");
 
         tree.getRoot()
-                .permission("example.run", "LOL")
-                .senderType(SenderType.PLAYER)
-                .exec(ctx ->{
-                    ctx.getSender().asPlayer().sendMessage("CommandTree is working!");
-                    return CommandResult.success();
-                })
-                // /example test
-                .then(CommandRouteNode.literal("test")
-                        .senderType(SenderType.PLAYER)
-                        .exec(ctx -> {
-                            ctx.getSender().sendMessage("HAHAH");
-                            return CommandResult.success();
-                        }))
-                // /example say <text>
-                .then(CommandRouteNode.literal("say")
-                        .permission("example.say", "LOL")
-                        .then(CommandRouteNode.argument("text", StringArgumentType.string())
-                                .exec(ctx -> {
-                                    String text = ctx.getArg("text");
-                                    ctx.getSender().sendMessage(text);
-                                    return CommandResult.success();
-                                })));
+            .permission("example.run", "LOL")
+            .senderType(SenderType.PLAYER)
+            .exec(ctx -> {
+                ctx.getSender()
+                   .asPlayer()
+                   .sendMessage("CommandTree is working!");
+                return CommandResult.success();
+            })
+            // /example test
+            .then(CommandRouteNode.literal("test")
+                                  .senderType(SenderType.PLAYER)
+                                  .exec(ctx -> {
+                                      ctx.getSender()
+                                         .sendMessage("HAHAH");
+                                      return CommandResult.success();
+                                  }))
+            // /example say <text>
+            .then(CommandRouteNode.literal("say")
+                                  .permission("example.say", "LOL")
+                                  .then(CommandRouteNode.argument("text",
+                                                                  StringArgumentType.string())
+                                                        .exec(ctx -> {
+                                                            String text = ctx.getArg(
+                                                                    "text");
+                                                            ctx.getSender()
+                                                               .sendMessage(text);
+                                                            return CommandResult.success();
+                                                        })));
         return tree;
     }
 

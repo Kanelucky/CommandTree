@@ -17,8 +17,8 @@ public class PlayerArgumentType implements ArgumentType<Player> {
     public Player parse(CommandContext context, String input) {
 
         Player player = context.getSender()
-                .getServer()
-                .getPlayerExact(input);
+                               .getServer()
+                               .getPlayerExact(input);
 
         if (player == null) {
             throw new IllegalArgumentException(TextFormat.RED + "Player not found: " + input);

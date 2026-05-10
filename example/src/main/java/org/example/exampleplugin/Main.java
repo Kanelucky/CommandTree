@@ -8,6 +8,8 @@ public class Main extends PluginBase {
     @Override
     public void onEnable() {
         //register the command
-        this.getServer().getCommandMap().register("examplecommand", new ExampleCommand());
+        this.getServer()
+            .getCommandMap()
+            .register("examplecommand", new ExampleCommand());
     }
 }

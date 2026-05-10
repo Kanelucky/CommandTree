@@ -38,7 +38,10 @@ public class CommandTreeFactory implements CommandTree.Factory {
                 return leaves;
             }
 
-            private void collectLeaves(CommandRouteNode node, List<CommandNode> out) {
+            private void collectLeaves(
+                    CommandRouteNode node,
+                    List<CommandNode> out
+                                      ) {
                 if (node.isLeaf()) {
                     out.add(node);
                 }

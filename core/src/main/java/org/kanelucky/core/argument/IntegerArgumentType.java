@@ -31,9 +31,7 @@ public class IntegerArgumentType implements ArgumentType<Integer> {
         }
 
         if (value < min || value > max) {
-            throw new IllegalArgumentException(
-                    TextFormat.RED + "Number must be between " + min + " and " + max
-            );
+            throw new IllegalArgumentException(TextFormat.RED + "Number must be between " + min + " and " + max);
         }
 
         return value;

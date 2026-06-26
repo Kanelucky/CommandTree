@@ -1,3 +1,8 @@
+# Warning!
+- This library has been merged into PowerNukkitX. See [PR#2645](https://github.com/PowerNukkitX/PowerNukkitX/pull/2645)
+
+---
+
 <!-- PROJECT LOGO -->
 <div align="center">
   <a href="https://github.com/Kanelucky/CommandTreeAP">
